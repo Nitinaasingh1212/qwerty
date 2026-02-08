@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CornerClub</title>
+    <meta name="description"
+        content="Learn about CornerClub's mission to build communities through shared experiences. Discover our story and values.">
+    <meta name="keywords" content="about CornerClub, community building, local events, shared experiences, our story">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="About Us - CornerClub">
+    <meta property="og:description" content="CornerClub is building communities through shared experiences.">
+    <meta property="og:url" content="https://cornerclub.in/about.html">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(135deg, #e67942, #a992dd);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-transform: lowercase;
+        }
+
+        .about-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .mission-icon {
+            font-size: 48px;
+            color: #6d28d9;
+            margin-bottom: 25px;
+        }
+
+        .mission-box h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .mission-box p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 28px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .stats-container {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            border-radius: 20px;
+            padding: 60px 40px;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 5px solid #f8fafc;
+        }
+
+        .team-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-card h4 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .team-card p {
+            font-size: 16px;
+            color: #8b5cf6;
+            margin-bottom: 15px;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 18px;
+        }
+
+        .team-social a {
+            color: #666;
+            transition: color 0.3s;
+        }
+
+        .team-social a:hover {
+            color: #6d28d9;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            color: white;
+            border: none;
+        }
+
+        .cta-btn.secondary {
+            background: white;
+            color: #6d28d9;
+            border: 2px solid #6d28d9;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 60px 20px;
+            }
+
+            .about-hero h1 {
+                font-size: 36px;
+            }
+
+            .about-hero p {
+                font-size: 18px;
+            }
+
+            .mission-box {
+                padding: 40px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .stat-item h3 {
+                font-size: 36px;
+            }
+
+            .cta-section {
+                padding: 40px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">cornerclub.in</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="create-event.html" class="create-event-btn">
+            <i class="fas fa-plus"></i> Create Event
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <h1>Building Connections, Creating memories</h1>
+        <p>At CornerClub, we believe that events are more than just gatherings - they're opportunities to build
+            meaningful communities and lasting relationships.</p>
+    </section>
+
+    <!-- About Content -->
+    <div class="about-content">
+        <!-- Our Mission -->
+        <section class="section">
+            <div class="mission-box">
+                <div class="mission-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To revolutionize how people connect through shared experiences by creating seamless platforms for
+                    meaningful interactions before, during, and after events. We're dedicated to transforming ordinary
+                    gatherings into extraordinary communities.</p>
+            </div>
+        </section>
+
+        <!-- What We Do -->
+        <section class="section">
+            <div class="section-header">
+                <h2>What Makes Us Different</h2>
+                <p>We're not just another event platform - we're a community builder</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Pre-Event Chat Rooms</h3>
+                    <p>Connect with fellow attendees before the event even starts. Break the ice, make plans, and build
+                        excitement together in our exclusive chat rooms.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Focused</h3>
+                    <p>We prioritize meaningful connections over mere ticket sales. Our platform is designed to foster
+                        relationships that last beyond the event.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Easy Event Creation</h3>
+                    <p>Anyone can create and host events with our intuitive tools. From small meetups to large
+                        conferences, we make event management simple.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Impact -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Our Impact</h2>
+                <p>Numbers that tell our story of community building</p>
+            </div>
+
+            <div class="stats-container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>50K+</h3>
+                        <p>Events Created</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>2M+</h3>
+                        <p>Community Members</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>150+</h3>
+                        <p>Cities Worldwide</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>4.8 ★</h3>
+                        <p>User Rating</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- For Everyone -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Built for Everyone</h2>
+                <p>Whether you're hosting or attending, we've got you covered</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <h3>For Event Organizers</h3>
+                    <p>Easy event creation, integrated ticketing, marketing tools, attendee communication, and detailed
+                        analytics to help you grow your community.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>For Attendees</h3>
+                    <p>Discover amazing events, connect with like-minded people, easy booking, personalized
+                        recommendations, and secure payments.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>For Communities</h3>
+                    <p>Build lasting relationships, share experiences, collaborate on future events, and create memories
+                        that extend beyond single gatherings.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values -->
+        <section class="section">
+            <div class="section-header">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Community First</h3>
+                    <p>We prioritize building genuine connections and relationships over everything else. Every feature
+                        we build is designed with community in mind.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3>Accessibility</h3>
+                    <p>We believe everyone should have access to amazing events. Our platform is designed to be
+                        inclusive and welcoming to all.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Trust & Safety</h3>
+                    <p>Creating a safe environment is our top priority. We verify events, protect user data, and ensure
+                        positive experiences for everyone.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready to Build Your Community?</h2>
+            <p>Join thousands of event organizers and community builders who trust CornerClub to create meaningful
+                connections and memorable experiences.</p>
+            <div class="cta-buttons">
+                <a href="create-event.html" class="cta-btn primary">Create Your First Event</a>
+                <a href="contact.html" class="cta-btn secondary">Contact Our Team</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CornerClub</h3>
+                <p>Building communities through shared experiences.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Music Events</a></li>
+                    <li><a href="#">Food Festivals</a></li>
+                    <li><a href="#">Tech Conferences</a></li>
+                    <li><a href="#">Art Exhibitions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 cornerclub.in. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for stats counter
+        document.addEventListener('DOMContentLoaded', function () {
+            const statElements = document.querySelectorAll('.stat-item h3');
+
+            statElements.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    stat.textContent = Math.floor(current) + (stat.textContent.includes('★') ? ' ★' : '+');
+                }, 30);
+            });
+
+            // Add hover effect to feature cards
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-10px)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

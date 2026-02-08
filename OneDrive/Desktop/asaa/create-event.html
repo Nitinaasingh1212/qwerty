@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host an Event - CornerClub</title>
+    <meta name="description"
+        content="Create and host your own events on CornerClub. Reach a wider audience and manage bookings easily.">
+    <meta name="keywords"
+        content="create event, host event, event management, CornerClub, organize event, submit event">
+    <meta property="og:title" content="Host an Event - CornerClub">
+    <meta property="og:description"
+        content="Create and host your own events on CornerClub. Reach a wider audience and manage bookings easily.">
+    <meta property="og:image" content="https://www.cornerclub.in/images/og-image.jpg">
+    <!-- Replace with actual image URL -->
+    <meta property="og:url" content="https://www.cornerclub.in/create-event.html">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">cornerclub.in</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="create-event.html" class="create-event-btn active">
+            <i class="fas fa-plus"></i> Create Event
+        </a>
+    </nav>
+
+    <!-- Create Event Form -->
+    <section class="form-container">
+        <h1>Create New Event</h1>
+
+        <!-- Step 1: Basic Information -->
+        <div class="form-section" id="step1">
+            <h2>Basic Information</h2>
+
+            <div class="form-group">
+                <label>Cover Image *</label>
+                <div class="upload-area" onclick="document.getElementById('coverImage').click()">
+                    <i class="fas fa-cloud-upload-alt"
+                        style="font-size: 3rem; color: #6d28d9; margin-bottom: 1rem;"></i>
+                    <p>Click to upload cover image</p>
+                    <p style="color: #666; font-size: 0.9rem;">Max 5MB (Recommended: 1200x600px)</p>
+                </div>
+                <input type="file" id="coverImage" accept="image/*" style="display: none;"
+                    onchange="previewCoverImage(event)">
+                <div id="coverPreview" class="image-preview"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="eventTitle">Event Title *</label>
+                <input type="text" id="eventTitle" placeholder="e.g. Saturday Night Jam" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category *</label>
+                <select id="category" required>
+                    <option value="">Select a category</option>
+                    <option value="music">Music</option>
+                    <option value="food">Food</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="fitness">Fitness</option>
+                    <option value="art">Art</option>
+                    <option value="tech">Tech</option>
+                    <option value="social">Social</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Step 2: Date, Time & Location -->
+        <div class="form-section" id="step2">
+            <h2>Date, Time & Location</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label for="eventDate">Date *</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventTime">Time *</label>
+                    <input type="time" id="eventTime" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="venueName">Venue Name *</label>
+                <input type="text" id="venueName" placeholder="e.g. Phoenix Palassio" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Map Link or Full Address *</label>
+                <input type="text" id="location" placeholder="Paste Google Maps link or type address" required>
+            </div>
+        </div>
+
+        <!-- Step 3: Organizer Details -->
+        <div class="form-section" id="step3">
+            <h2>Organizer Details</h2>
+
+            <div class="form-group">
+                <label for="organizerName">Organizer Name *</label>
+                <input type="text" id="organizerName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number *</label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="padding: 0.8rem; background: #f1f5f9; border-radius: 5px 0 0 5px;">+91</span>
+                    <input type="tel" id="phoneNumber" style="flex: 1; border-radius: 0 5px 5px 0;" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Social Media Handles (At least one required) *</label>
+                <input type="text" id="instagram" placeholder="Instagram Handle (e.g., @username)"
+                    style="margin-bottom: 0.5rem;">
+                <input type="url" id="facebook" placeholder="Facebook URL (e.g., facebook.com/username)"
+                    style="margin-bottom: 0.5rem;">
+                <input type="url" id="youtube" placeholder="YouTube Channel URL (e.g., youtube.com/username)">
+            </div>
+        </div>
+
+        <!-- Step 4: Event Details -->
+        <div class="form-section" id="step4">
+            <h2>Event Details</h2>
+
+            <div class="form-group">
+                <label>Past Work Portfolio</label>
+                <div class="upload-area" onclick="document.getElementById('portfolioImages').click()">
+                    <i class="fas fa-images" style="font-size: 2rem; color: #6d28d9; margin-bottom: 1rem;"></i>
+                    <p>Add Photos</p>
+                    <p style="color: #666; font-size: 0.9rem;">Upload photos from previous events to build trust (Max 4
+                        images, 5MB each)</p>
+                </div>
+                <input type="file" id="portfolioImages" accept="image/*" style="display: none;" multiple
+                    onchange="previewPortfolioImages(event)">
+                <div id="portfolioPreview" class="image-preview"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description *</label>
+                <textarea id="description" placeholder="Tell us about the event..." required></textarea>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label for="capacity">Capacity *</label>
+                    <input type="number" id="capacity" min="1" value="50" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price*</label>
+                    <input type="number" id="price" min="0" step="0.01" value="0" required>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="resetForm()">Cancel</button>
+            <button type="button" class="btn btn-primary" id="createEventBtn">Create Event</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CornerClub</h3>
+                <p>Building communities through shared experiences.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Music Events</a></li>
+                    <li><a href="#">Food Festivals</a></li>
+                    <li><a href="#">Tech Conferences</a></li>
+                    <li><a href="#">Art Exhibitions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 cornerclub.in. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="animations.js"></script>
+    <script type="module">
+        import { db, collection, addDoc, setDoc, doc, auth, onAuthStateChanged } from './firebase-config.js';
+
+        // Auth Check
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                alert("You must be logged in to create an event!");
+                window.location.href = "login.html?redirect=create-event.html";
+            }
+        });
+
+        // Image preview functions (Attached to window for Global access)
+        window.previewCoverImage = function (event) {
+            const preview = document.getElementById('coverPreview');
+            const uploadArea = document.querySelector('.upload-area'); // Select specific area if needed
+
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.innerHTML = `
+                        <div style="position: relative; display: inline-block; width: 100%;">
+                            <img src="${e.target.result}" class="preview-image" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px;">
+                            <button type="button" onclick="removeCoverImage()" style="position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.7); color: white; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer;">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    `;
+                    // Hide the upload area prompt
+                    event.target.closest('.form-group').querySelector('.upload-area').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        window.removeCoverImage = function () {
+            const preview = document.getElementById('coverPreview');
+            preview.innerHTML = '';
+            document.getElementById('coverImage').value = ''; // Reset input
+            // Show upload area again
+            document.querySelector('.upload-area').style.display = 'flex';
+        }
+
+        window.previewPortfolioImages = function (event) {
+            const preview = document.getElementById('portfolioPreview');
+            const files = Array.from(event.target.files);
+
+            // Count existing images (looking for our wrapper class or just images)
+            const currentCount = preview.querySelectorAll('img').length;
+
+            if (currentCount + files.length > 4) {
+                alert("You can upload a maximum of 4 portfolio images.");
+                event.target.value = ''; // Reset
+                return;
+            }
+
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        // Create wrapper for relative positioning
+                        const container = document.createElement('div');
+                        container.style.position = 'relative';
+                        container.style.display = 'inline-block';
+                        container.style.margin = '10px';
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'preview-image';
+                        // Inline styles for consistency
+                        img.style.width = '100px';
+                        img.style.height = '100px';
+                        img.style.objectFit = 'cover';
+                        img.style.borderRadius = '8px';
+
+                        const removeBtn = document.createElement('button');
+                        removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                        removeBtn.style.position = 'absolute';
+                        removeBtn.style.top = '-8px';
+                        removeBtn.style.right = '-8px';
+                        removeBtn.style.background = '#ef4444';
+                        removeBtn.style.color = 'white';
+                        removeBtn.style.border = '2px solid white';
+                        removeBtn.style.borderRadius = '50%';
+                        removeBtn.style.width = '24px';
+                        removeBtn.style.height = '24px';
+                        removeBtn.style.cursor = 'pointer';
+                        removeBtn.style.display = 'flex';
+                        removeBtn.style.alignItems = 'center';
+                        removeBtn.style.justifyContent = 'center';
+                        removeBtn.style.fontSize = '12px';
+                        removeBtn.type = 'button'; // Prevent form submit
+
+                        removeBtn.onclick = function () {
+                            container.remove();
+                        };
+
+                        container.appendChild(img);
+                        container.appendChild(removeBtn);
+                        preview.appendChild(container);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+            event.target.value = ''; // Reset so same file can be selected again if needed
+        }
+
+        window.resetForm = function () {
+            document.querySelectorAll('input, select, textarea').forEach(element => {
+                if (element.type !== 'button' && element.type !== 'submit') {
+                    element.value = '';
+                }
+            });
+            document.getElementById('coverPreview').innerHTML = '';
+            document.getElementById('portfolioPreview').innerHTML = '';
+
+            // Restore upload area visibility
+            const uploadArea = document.querySelector('.form-group .upload-area');
+            if (uploadArea) uploadArea.style.display = 'flex';
+        }
+
+        // Create new event
+        async function createEvent() {
+            try {
+                console.log("Create event triggered");
+                const submitBtn = document.getElementById('createEventBtn');
+                submitBtn.disabled = true;
+                submitBtn.innerText = "Creating...";
+
+                // Get form values
+                const eventTitle = document.getElementById('eventTitle').value;
+                const category = document.getElementById('category').value;
+                const eventDate = document.getElementById('eventDate').value;
+                const eventTime = document.getElementById('eventTime').value;
+                const venueName = document.getElementById('venueName').value;
+                const location = document.getElementById('location').value;
+                const organizerName = document.getElementById('organizerName').value;
+                const phoneNumber = document.getElementById('phoneNumber').value;
+                const description = document.getElementById('description').value;
+                const capacity = document.getElementById('capacity').value;
+                const price = document.getElementById('price').value;
+
+                // Basic validation
+                let missingFields = [];
+                if (!eventTitle) missingFields.push("Event Title");
+                if (!category) missingFields.push("Category");
+                if (!eventDate) missingFields.push("Date");
+                if (!eventTime) missingFields.push("Time");
+                if (!venueName) missingFields.push("Venue Name");
+                if (!location) missingFields.push("Location");
+                if (!organizerName) missingFields.push("Organizer Name");
+                if (!phoneNumber) missingFields.push("Phone Number");
+                if (!description) missingFields.push("Description");
+
+                if (missingFields.length > 0) {
+                    alert('Please fill in the following required fields:\n- ' + missingFields.join('\n- '));
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Create Event";
+                    return;
+                }
+
+                // Handle Image with Compression
+                let imageUrl = "https://images.unsplash.com/photo-1492684223066-dd23140edf6d?w=400&h=200&fit=crop";
+                const imgPreview = document.querySelector('#coverPreview img');
+                if (imgPreview) {
+                    try {
+                        // Compress image to ensure it's under 1MB (Firestore limit)
+                        imageUrl = await compressImage(imgPreview.src);
+                    } catch (e) {
+                        console.warn("Image compression failed, trying original", e);
+                        imageUrl = imgPreview.src;
+                    }
+                }
+
+                // Handle Portfolio Images - Compress each
+                let portfolioImages = [];
+                const portfolioPreviews = document.querySelectorAll('#portfolioPreview img');
+                if (portfolioPreviews.length > 0) {
+                    try {
+                        const compressionPromises = Array.from(portfolioPreviews).map(img => compressImage(img.src, 600, 400));
+                        portfolioImages = await Promise.all(compressionPromises);
+                    } catch (e) {
+                        console.warn("Portfolio compression failed", e);
+                    }
+                }
+
+                const eventData = {
+                    title: eventTitle,
+                    category: category.charAt(0).toUpperCase() + category.slice(1),
+                    date: eventDate,
+                    time: eventTime,
+                    location: venueName + ', ' + location,
+                    price: parseFloat(price) || 0,
+                    currency: "₹",
+                    image: imageUrl,
+                    capacity: parseInt(capacity) || 0,
+                    description: description,
+                    portfolioImages: portfolioImages, // Array of Base64 strings
+                    organizer: {
+                        name: organizerName,
+                        phone: phoneNumber
+                    },
+                    // Add flat fields for UI compatibility
+                    hostName: organizerName,
+                    hostUid: auth.currentUser.uid,
+                    hostAvatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(organizerName)}&background=random`,
+                    createdAt: new Date().toISOString(),
+                    status: 'pending' // Strict: Requires Admin Approval
+                };
+
+                // Create Custom ID: Title_Organizer_Timestamp
+                // Sanitize to remove special chars
+                const safeTitle = eventTitle.replace(/[^a-zA-Z0-9]/g, "");
+                const safeOrganizer = organizerName.replace(/[^a-zA-Z0-9]/g, "");
+                const customId = `${safeTitle}_${safeOrganizer}_${Date.now()}`;
+
+                // Add to Firestore with Custom ID
+                await setDoc(doc(db, "events", customId), eventData);
+                console.log("Document written with ID: ", customId);
+
+                alert('Event created successfully! It is now pending approval by the admin.');
+                window.location.href = 'profile.html';
+
+            } catch (error) {
+                console.error("Error creating event:", error);
+
+                // Friendly error for size limit
+                if (error.message.includes("longer than 1048487 bytes")) {
+                    alert("Error: The image is too large for the database. Please try a smaller image.");
+                } else {
+                    alert("Error connecting to Firebase: " + error.message);
+                }
+
+                const submitBtn = document.getElementById('createEventBtn');
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Create Event";
+            }
+        }
+
+        // Helper: Compress Image to avoid Firestore 1MB limit check
+        function compressImage(base64Str, maxWidth = 800, maxHeight = 600) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = base64Str;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height *= maxWidth / width;
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width *= maxHeight / height;
+                            height = maxHeight;
+                        }
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    resolve(canvas.toDataURL('image/jpeg', 0.7)); // Compress to JPEG at 70% quality
+                };
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('eventDate').min = today;
+
+            const createBtn = document.getElementById('createEventBtn');
+            if (createBtn) {
+                createBtn.addEventListener('click', createEvent);
+            }
+        });
+    </script>
+</body>
+
+</html>

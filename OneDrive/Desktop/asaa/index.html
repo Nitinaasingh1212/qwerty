@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CornerClub - Discover & Host Local Events</title>
+    <meta name="description"
+        content="Join CornerClub to find the best local events, workshops, and meetups in your city. Host your own events and build a vibrant community.">
+    <meta name="keywords"
+        content="events, meetups, workshops, local events, host events, community, CornerClub, booking">
+    <meta name="author" content="CornerClub">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cornerclub.in/">
+    <meta property="og:title" content="CornerClub - Discover & Host Local Events">
+    <meta property="og:description"
+        content="Join CornerClub to find the best local events, workshops, and meetups in your city.">
+    <meta property="og:image" content="https://cornerclub.in/assets/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cornerclub.in/">
+    <meta property="twitter:title" content="CornerClub - Discover & Host Local Events">
+    <meta property="twitter:description"
+        content="Join CornerClub to find the best local events, workshops, and meetups in your city.">
+    <meta property="twitter:image" content="https://cornerclub.in/assets/og-image.jpg">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Internal styles moved to style.css for better organization and caching -->
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span
+                style="background:var(--primary-color); color:white; padding:5px 10px; border-radius:50%; font-size:1.2rem;">cc</span>
+            cornerclub.in
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="create-event.html" class="create-event-btn">Create Event</a>
+            <div id="authLinks">
+                <a href="login.html" style="text-decoration:none; color:var(--text-color); font-weight:600;">Login</a>
+            </div>
+            <div id="userProfile" style="display: none; align-items: center; gap: 10px;">
+                <div id="userAvatar" onclick="window.location.href='profile.html'"
+                    style="width:40px; height:40px; background:var(--primary-color); color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; cursor:pointer;">
+                    U</div>
+                <button id="logoutBtn"
+                    style="background:white; border:1px solid #ddd; padding:5px 10px; border-radius:20px; font-size:0.8rem; cursor:pointer;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Discover events, build community.</h1>
+        <p>Every booking on CornerClub opens a chat room with other attendees—because the best part of any activity is
+            the people you share it with.</p>
+
+        <!-- Browse by Category -->
+        <div class="category-buttons" style="justify-content: flex-start; padding: 0;">
+            <button class="category-btn active"
+                style="background:var(--primary-color); color:white; border:none;">All</button>
+            <button class="category-btn">Music</button>
+            <button class="category-btn">Food</button>
+            <button class="category-btn">Comedy</button>
+            <button class="category-btn">Fitness</button>
+            <button class="category-btn">Art</button>
+            <button class="category-btn">Tech</button>
+            <button class="category-btn">Social</button>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filter-section" style="justify-content: flex-start; padding: 0; margin-top: 20px; gap: 15px;">
+            <!-- Location Filter -->
+            <div class="filter-dropdown">
+                <i class="fas fa-map-marker-alt"></i>
+                <select>
+                    <option value="All cities">All cities</option>
+                    <option value="Lucknow">Lucknow</option>
+                </select>
+            </div>
+
+            <div
+                style="display:flex; align-items:center; background:white; border:1px solid #ddd; border-radius:20px; padding: 0 15px;">
+                <span style="font-weight:600; margin-right:5px;">Sort:</span>
+                <select id="sortBy" style="border:none; outline:none; font-weight:600;">
+                    <option>Upcoming</option>
+                    <option>Price: Low to High</option>
+                </select>
+            </div>
+
+            <div class="saved-checkbox">
+                <input type="checkbox" id="savedOnly">
+                <label for="savedOnly">Saved only</label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Grid -->
+    <div class="events-container">
+        <div class="events-grid" id="eventsGrid">
+            <!-- Events will be loaded here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="share-modal" id="shareModal">
+        <div class="share-modal-content">
+            <button class="close-modal" id="closeModal" onclick="closeShareModal()">&times;</button>
+            <h3>Share Event</h3>
+            <div class="share-options">
+                <div class="share-option facebook-bg" onclick="shareOnFacebook()">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="share-option twitter-bg" onclick="shareOnTwitter()">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div class="share-option whatsapp-bg" onclick="shareOnWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="share-option link-bg" onclick="copyEventLink()">
+                    <i class="fas fa-link"></i>
+                </div>
+            </div>
+            <div class="share-url">
+                <input type="text" id="eventLink" value="https://cornerclub.in/event/123" readonly>
+                <button onclick="copyEventLink()">Copy</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Global State & Functions
+        // ensuring these are available even if module script fails (e.g. CORS)
+
+        window.savedEvents = JSON.parse(localStorage.getItem('savedEvents')) || [];
+        window.optedIn = JSON.parse(localStorage.getItem('optedIn')) || false;
+        window.currentEventToShare = null;
+        window.firebaseEvents = [];
+
+        window.sampleEvents = [
+
+            {
+                id: 2,
+                title: "Open Mic Night",
+                category: "Comedy",
+                date: "2026-10-28",
+                time: "8:00 pm",
+                location: "Bangalore",
+                price: 199,
+                currency: "₹",
+                capacity: 50,
+                image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38",
+                description: "Stand-up comedy open mic.",
+                hostName: "Sara",
+                hostAvatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d"
+            },
+            {
+                id: 3,
+                title: "Art Workshop",
+                category: "Art",
+                date: "2026-10-30",
+                time: "6:30 pm",
+                location: "Pune",
+                price: 299,
+                currency: "₹",
+                capacity: 30,
+                image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b",
+                description: "Learn painting basics.",
+                hostName: "Rahul",
+            },
+            {
+                id: 4,
+                title: "Tech Meetup",
+                category: "Tech",
+                date: "2026-11-05",
+                time: "09:00 am",
+                location: "Hyderabad",
+                price: "Free",
+                currency: "₹",
+                capacity: 100,
+                image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+                description: "Networking for developers.",
+                hostName: "Priya",
+            },
+        ];
+
+        window.openShareModal = function (eventId) {
+            let allEvents = [...window.firebaseEvents, ...window.sampleEvents];
+            window.currentEventToShare = allEvents.find(event => event.id == eventId);
+            if (window.currentEventToShare) {
+                const eventLink = `https://cornerclub.in/event/${eventId}`;
+                document.getElementById('eventLink').value = eventLink;
+                document.getElementById('shareModal').style.display = 'flex';
+            }
+        }
+
+        window.closeShareModal = function () {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        window.copyEventLink = function () {
+            const eventLink = document.getElementById('eventLink');
+            eventLink.select();
+            document.execCommand('copy');
+            alert('Link copied to clipboard!');
+        }
+
+        window.shareOnFacebook = function () {
+            const link = document.getElementById('eventLink').value;
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(link)}`, '_blank');
+        }
+
+        window.shareOnWhatsApp = function () {
+            const link = document.getElementById('eventLink').value;
+            window.open(`https://wa.me/?text=${encodeURIComponent(link)}`, '_blank');
+        }
+
+        window.shareOnTwitter = function () {
+            const link = document.getElementById('eventLink').value;
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}`, '_blank');
+        }
+
+        window.bookEvent = function (id) {
+            console.log("Navigating to event:", id);
+            if (!id) {
+                alert("Error: Event ID is missing.");
+                return;
+            }
+            window.location.href = `event-details.html?id=${encodeURIComponent(id)}`;
+        }
+
+        window.openChat = function (id) {
+            window.location.href = `event-details.html?id=${id}#chatRoom`;
+        }
+
+        window.formatDate = function (dateString) {
+            if (!dateString) return "TBD";
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        window.toggleSaveEvent = function (eventId) {
+            const index = window.savedEvents.indexOf(eventId);
+            if (index === -1) {
+                window.savedEvents.push(eventId);
+                alert('Event saved!');
+            } else {
+                window.savedEvents.splice(index, 1);
+                alert('Event removed from saved');
+            }
+            localStorage.setItem('savedEvents', JSON.stringify(window.savedEvents));
+            // Trigger reload if function is available (it is in module, but we can call it if attached to window)
+            // But loadEvents is in module. We need to make loadEvents global too?
+            // Yes, let's attach loadEvents to window inside the module.
+            if (window.loadEvents) window.loadEvents();
+        }
+
+        window.filterEvents = function () {
+            // We need access to sortEvents which is also logic.
+            // Ideally all logic should be here or there.
+            // If we keep logic here, we need loadEvents here.
+            // But loadEvents needs Firebase.
+            // So loadEvents MUST be in module (or we use dynamic import).
+            // Let's implement filter logic here but call window.loadEvents(sorted)
+            if (window.filterEventsLogic) window.filterEventsLogic();
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CornerClub</h3>
+                <p>Building communities through shared experiences.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Music Events</a></li>
+                    <li><a href="#">Food Festivals</a></li>
+                    <li><a href="#">Tech Conferences</a></li>
+                    <li><a href="#">Art Exhibitions</a></li>
+                </ul>
+            </div>
+        </div>
+        <p>&copy; 2026 cornerclub.in. All rights reserved. (v1.1)</p>
+        </div>
+    </footer>
+
+    <script src="animations.js"></script>
+    <script type="module">
+        import { db, collection, getDocs, getDoc, doc, auth, onAuthStateChanged, signOut, query, limit, where } from './firebase-config.js';
+
+        // Make loadEvents globally available so Global Script can call it
+        window.loadEvents = loadEvents;
+
+        // Auth Listener
+        onAuthStateChanged(auth, async (user) => {
+            const authLinks = document.getElementById('authLinks');
+            const userProfile = document.getElementById('userProfile');
+            const userName = document.getElementById('userName');
+
+            if (user) {
+                // User is signed in
+                if (authLinks) authLinks.style.display = 'none';
+                if (userProfile) {
+                    userProfile.style.display = 'flex';
+
+                    // Try to get name from Auth profile, else fetch from Firestore
+                    if (user.displayName) {
+                        userName.innerText = user.displayName;
+                    } else {
+                        try {
+                            const userDoc = await getDoc(doc(db, "users", user.uid));
+                            if (userDoc.exists() && userDoc.data().name) {
+                                userName.innerText = userDoc.data().name;
+                            } else {
+                                userName.innerText = "User";
+                            }
+                        } catch (e) {
+                            userName.innerText = "User";
+                        }
+                    }
+                }
+            } else {
+                // User is signed out
+                if (authLinks) authLinks.style.display = 'flex';
+                if (userProfile) userProfile.style.display = 'none';
+            }
+        });
+
+        // Logout Handler
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                signOut(auth).then(() => {
+                    alert('Logged out!');
+                    window.location.reload();
+                });
+            });
+        }
+
+        // Load Events Logic
+        async function loadEvents(eventsToLoad = null) {
+            const container = document.getElementById('eventsGrid');
+            if (!container) return;
+
+            // Show Skeleton if loading from scratch
+            if (!window.firebaseEvents.length && !eventsToLoad) {
+                container.innerHTML = Array(3).fill(0).map(() => `
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-image"></div>
+                        <div class="skeleton-content">
+                            <div class="skeleton skeleton-text"></div>
+                            <div class="skeleton skeleton-text short"></div>
+                            <div class="skeleton skeleton-text"></div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Fetch from Firebase
+            if (!eventsToLoad && window.firebaseEvents.length === 0) {
+                try {
+                    // PERF: Limit query to 20 recent events for speed
+                    const q = query(collection(db, "events"), limit(20));
+                    const querySnapshot = await getDocs(q);
+
+                    querySnapshot.forEach((doc) => {
+                        const eventData = doc.data();
+                        window.firebaseEvents.push({ id: doc.id, ...eventData });
+                    });
+                    console.log("Firebase events loaded:", window.firebaseEvents.length);
+                } catch (e) {
+                    console.warn("Firebase Fetch Error (likely local file access):", e);
+                }
+            }
+
+            eventsGrid.innerHTML = '';
+
+            // Combine
+            let displayEvents = eventsToLoad || [...window.firebaseEvents, ...window.sampleEvents];
+
+            // Deduplicate
+            const seenIds = new Set();
+            displayEvents = displayEvents.filter(e => {
+                const id = String(e.id);
+                if (seenIds.has(id)) return false;
+                seenIds.add(id);
+                return true;
+            });
+
+            // FILTER: STRICTLY show only APPROVED events
+            // User requested: "Without admin panel approval events show nahi honi chaiya"
+            displayEvents = displayEvents.filter(e => {
+                if (e.status === 'approved') return true;
+                // Hide pending, deleted, or undefined status
+                return false;
+            });
+
+            // Apply category filter
+            // Assuming currentCategory is defined elsewhere or passed
+            const currentCategory = document.querySelector('.category-btn.active')?.textContent || 'All';
+            if (currentCategory !== 'All') {
+                displayEvents = displayEvents.filter(e =>
+                    e.category && e.category.toLowerCase() === currentCategory.toLowerCase()
+                );
+            }
+
+            // Apply City Filter
+            const cityFilter = document.querySelector('.filter-section select')?.value;
+            if (cityFilter && cityFilter !== 'All cities') {
+                displayEvents = displayEvents.filter(e => e.location && e.location.includes(cityFilter));
+            }
+
+            // Apply Saved Filter
+            // Assuming activeFilters is an object that holds filter states
+            // For now, we'll use the existing DOM check for 'savedOnly'
+            if (document.getElementById('savedOnly') && document.getElementById('savedOnly').checked) {
+                displayEvents = displayEvents.filter(e => window.savedEvents.includes(String(e.id)) || window.savedEvents.includes(e.id));
+            }
+
+            eventsGrid.innerHTML = '';
+
+            displayEvents.forEach(event => {
+                try {
+                    const card = document.createElement('div');
+                    card.className = 'event-card';
+
+                    // Determine Badge Text (Free or Price)
+                    const priceText = (event.price == 0 || event.price === 'Free')
+                        ? 'Free'
+                        : `₹${event.price}`;
+
+
+
+                    // Format Date & Time nicely (Strict Match: "24 Oct • 10:30 pm")
+                    const dateObj = new Date(event.date);
+                    const dateStr = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+
+                    let timeStr = event.time;
+                    if (timeStr && timeStr.includes(':')) {
+                        const [hours, minutes] = timeStr.split(':');
+                        const h = parseInt(hours);
+                        const ampm = h >= 12 ? 'pm' : 'am';
+                        const h12 = h % 12 || 12;
+                        timeStr = `${h12}:${minutes} ${ampm}`;
+                    }
+
+                    // Determine Creator Name & Initials
+                    const creatorName = event.hostName || (event.organizer && event.organizer.name) || "Host";
+                    const initials = creatorName.substring(0, 2).toUpperCase();
+
+                    // Generate Consistent Pastel Color from Name
+                    const colors = ['#A7F3D0', '#FBCFE8', '#FDE68A', '#BAE6FD', '#C7D2FE', '#E9D5FF', '#FECACA'];
+                    let hash = 0;
+                    for (let i = 0; i < creatorName.length; i++) {
+                        hash = creatorName.charCodeAt(i) + ((hash << 5) - hash);
+                    }
+                    const colorIndex = Math.abs(hash) % colors.length;
+                    const avatarColor = colors[colorIndex];
+
+                    // Fallback Image
+                    const eventImage = event.image || "https://images.unsplash.com/photo-1492684223066-dd23140edf6d";
+
+                    // Button Text Logic (Strict Match)
+                    let buttonText = 'Book Free Ticket';
+                    if (priceText !== 'Free') {
+                        buttonText = `Buy ${priceText}`;
+                    }
+
+                    card.innerHTML = `
+                            <div class="event-image-container" onclick="bookEvent('${String(event.id).replace(/'/g, "\\'")}')" style="cursor: pointer;">
+                                <img src="${eventImage}" alt="${event.title}" class="event-image">
+                                <div class="card-badge-price">${priceText}</div>
+                                <div class="card-icon-save" onclick="event.stopPropagation(); toggleSaveEvent('${String(event.id).replace(/'/g, "\\'")}')">
+                                    <i class="${window.savedEvents.includes(String(event.id)) ? 'fas' : 'far'} fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <div class="event-title">${event.title}</div>
+                                <div class="event-info-row">${dateStr} • ${timeStr}</div>
+                                <div class="event-info-row">${event.location} • ${event.category}</div>
+                                
+                                <div class="creator-row">
+                                    <div class="creator-avatar" style="background-color: ${avatarColor};">${initials}</div>
+                                    <span>Creator: <strong>${creatorName}</strong> <i class="fas fa-check-circle" style="color: #6d28d9; margin-left: 5px;" title="Verified"></i></span>
+                                </div>
+
+                                <div class="card-actions">
+                                    <button class="btn-book" onclick="bookEvent('${String(event.id).replace(/'/g, "\\'")}')">
+                                        ${buttonText}
+                                    </button>
+                                    ${window.optedIn ? `<button class="btn-icon" onclick="openChat('${String(event.id).replace(/'/g, "\\'")}')">Chat</button>` : ''}
+                                    <button class="btn-icon" onclick="openShareModal('${String(event.id).replace(/'/g, "\\'")}')">Share</button>
+                                </div>
+                            </div>
+                    `;
+                    eventsGrid.appendChild(card);
+                } catch (err) {
+                    console.error("Error rendering event card:", event, err);
+                }
+            });
+
+            if (displayEvents.length === 0) {
+                eventsGrid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 2rem; color: #666;">No particular events found matching current filters.</div>';
+            }
+
+            // Re-attach listeners
+            document.querySelectorAll('.save-btn').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    let id = this.getAttribute('data-id');
+                    if (!isNaN(id) && String(id).length < 5) id = parseInt(id);
+                    window.toggleSaveEvent(id);
+                });
+            });
+        }
+
+        // Expose Logic for Filter
+        window.filterEventsLogic = function () {
+            const activeCategory = document.querySelector('.category-btn.active').textContent;
+            let filteredEvents = [...window.firebaseEvents, ...window.sampleEvents];
+
+            if (activeCategory !== 'All') {
+                filteredEvents = filteredEvents.filter(event =>
+                    event.category.toLowerCase() === activeCategory.toLowerCase()
+                );
+            }
+
+            const sortBy = document.getElementById('sortBy').value;
+            sortEvents(filteredEvents, sortBy);
+        }
+
+        function sortEvents(events, sortBy) {
+            let sortedEvents = [...events];
+            switch (sortBy) {
+                case 'Date':
+                    sortedEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    break;
+                case 'Price: Low to High':
+                    sortedEvents.sort((a, b) => a.price - b.price);
+                    break;
+                case 'Price: High to Low':
+                    sortedEvents.sort((a, b) => b.price - a.price);
+                    break;
+                case 'Popularity':
+                    sortedEvents.sort((a, b) => (b.capacity || 0) - (a.capacity || 0));
+                    break;
+            }
+            loadEvents(sortedEvents);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadEvents();
+
+            // Listeners
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    window.filterEvents();
+                });
+            });
+
+            document.getElementById('savedOnly').addEventListener('change', () => loadEvents());
+            document.getElementById('sortBy').addEventListener('change', window.filterEvents);
+        });
+    </script>
+
+</body>
+
+</html>

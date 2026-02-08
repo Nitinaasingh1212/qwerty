@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - CornerClub</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Private page -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            background: #6d28d9;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+
+        .info-grid {
+            margin-bottom: 30px;
+        }
+
+        .info-group {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .info-value {
+            color: #1e293b;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 30px 0 15px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .event-item {
+            display: flex;
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        .event-item:hover {
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+        }
+
+        .event-item-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .event-item-info {
+            flex: 1;
+        }
+
+        .event-item-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .event-item-meta {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .btn-logout {
+            width: 100%;
+            padding: 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-logout:hover {
+            background: #dc2626;
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #94a3b8;
+            padding: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f1f5f9;">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <span
+                style="background:var(--primary-color); color:white; padding:5px 10px; border-radius:50%; font-size:1.2rem;">cc</span>
+            cornerclub.in
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="create-event.html" class="create-event-btn">
+                <i class="fas fa-plus"></i> Create Event
+            </a>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div id="loading" style="text-align: center; padding: 20px;">
+            <i class="fas fa-spinner fa-spin fa-2x" style="color: var(--primary-color);"></i>
+        </div>
+
+        <div id="profileContent" style="display: none;">
+            <!-- Header -->
+            <div class="profile-header">
+                <div class="profile-avatar" id="avatar">U</div>
+                <h2 id="displayName">User Name</h2>
+                <p style="color: #64748b;">Member since <span id="joinDate">2024</span></p>
+            </div>
+
+            <!-- Profile Details -->
+            <div class="info-grid">
+                <div class="info-group">
+                    <span class="info-label">Full Name</span>
+                    <span class="info-value" id="pName">Loading...</span>
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Email Address</span>
+                    <span class="info-value" id="pEmail">Loading...</span>
+                </div>
+                <div class="info-group">
+                    <span class="info-label">Phone Number</span>
+                    <span class="info-value" id="pPhone">Loading...</span>
+                </div>
+            </div>
+
+            <!-- My Hosted Events -->
+            <div class="section-title">
+                <i class="fas fa-microphone-alt" style="color: var(--primary-color);"></i>
+                My Hosted Events
+            </div>
+            <div id="hostedEventsList" class="event-list">
+                <div class="empty-state">Loading your events...</div>
+            </div>
+
+            <!-- My Bookings -->
+            <div class="section-title">
+                <i class="fas fa-ticket-alt" style="color: var(--primary-color);"></i>
+                My Bookings
+            </div>
+            <div id="bookingsList" class="event-list">
+                <div class="empty-state">Loading your bookings...</div>
+            </div>
+
+            <button class="btn-logout" id="logoutBtnPage">
+                <i class="fas fa-sign-out-alt"></i> Sign Out
+            </button>
+        </div>
+    </div>
+
+    <script src="animations.js"></script>
+    <script type="module">
+        import { auth, db, doc, getDoc, getDocs, collection, query, where, signOut, onAuthStateChanged } from './firebase-config.js';
+
+        const loading = document.getElementById('loading');
+        const content = document.getElementById('profileContent');
+
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // OPTIMIZATION: Render IMMEDIATELY with Auth data
+                renderProfile(user, {});
+
+                // Background fetch extra data
+                const docRef = doc(db, "users", user.uid);
+                getDoc(docRef).then(docSnap => {
+                    if (docSnap.exists()) {
+                        renderProfile(user, docSnap.data());
+                    }
+                }).catch(e => console.error("Profile fetch error:", e));
+
+                // Fetch lists in background
+                fetchHostedEvents(user.uid);
+                fetchBookings(user.uid);
+
+            } else {
+                // Not logged in
+                window.location.href = 'login.html';
+            }
+        });
+
+        function renderProfile(user, firestoreData) {
+            loading.style.display = 'none';
+            content.style.display = 'block';
+
+            const name = firestoreData.name || user.displayName || 'User';
+            const email = firestoreData.email || user.email;
+            const phone = firestoreData.phone || "Not provided";
+            const joined = firestoreData.createdAt ? new Date(firestoreData.createdAt).toLocaleDateString() : 'Recently';
+
+            document.getElementById('displayName').innerText = name;
+            document.getElementById('avatar').innerText = name.charAt(0).toUpperCase();
+            document.getElementById('joinDate').innerText = joined;
+
+            document.getElementById('pName').innerText = name;
+            document.getElementById('pEmail').innerText = email;
+            document.getElementById('pPhone').innerText = phone;
+        }
+
+        async function fetchHostedEvents(uid) {
+            const listContainer = document.getElementById('hostedEventsList');
+            try {
+                // Query events where hostUid == uid
+                const q = query(collection(db, "events"), where("hostUid", "==", uid));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    listContainer.innerHTML = '<div class="empty-state">You haven\'t hosted any events yet.</div>';
+                    return;
+                }
+
+                listContainer.innerHTML = '';
+                querySnapshot.forEach((doc) => {
+                    const event = doc.data();
+                    const el = createEventElement(doc.id, event.title, event.date, event.image, event.status);
+                    listContainer.appendChild(el);
+                });
+
+            } catch (e) {
+                console.error("Error fetching hosted events:", e);
+                listContainer.innerHTML = '<div class="empty-state">Could not load events.</div>';
+            }
+        }
+
+        async function fetchBookings(uid) {
+            const listContainer = document.getElementById('bookingsList');
+            try {
+                // Query bookings where userId == uid
+                const q = query(collection(db, "bookings"), where("userId", "==", uid));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    listContainer.innerHTML = '<div class="empty-state">You haven\'t booked any events yet.</div>';
+                    return;
+                }
+
+                listContainer.innerHTML = '';
+                querySnapshot.forEach((doc) => {
+                    const booking = doc.data();
+                    // We might only have eventTitle here if we optimized.
+                    // Ideally we fetch the event details, but for now let's use what we stored in bookings
+                    // In the previous step, I stored 'eventTitle' in the booking doc.
+                    const el = createEventElement(booking.eventId, booking.eventTitle, `Booked on: ${new Date(booking.bookedAt).toLocaleDateString()}`, null);
+                    listContainer.appendChild(el);
+                });
+
+            } catch (e) {
+                console.error("Error fetching bookings:", e);
+                listContainer.innerHTML = '<div class="empty-state">Could not load bookings.</div>';
+            }
+        }
+
+        function createEventElement(id, title, metaText, image, status = '') {
+            const div = document.createElement('div');
+            div.className = 'event-item';
+            div.onclick = () => window.location.href = `event-details.html?id=${id}`;
+
+            const imgUrl = image || 'https://via.placeholder.com/60';
+
+            // Status Badge Logic
+            let statusBadge = '';
+            if (status === 'pending') {
+                statusBadge = '<span style="background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-left: 5px;">PENDING</span>';
+            } else if (status === 'approved') {
+                statusBadge = '<span style="background: #dcfce7; color: #166534; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; margin-left: 5px;">LIVE</span>';
+            }
+
+            div.innerHTML = `
+                <img src="${imgUrl}" alt="Event" class="event-item-img">
+                <div class="event-item-info">
+                    <div class="event-item-title">${title} ${statusBadge}</div>
+                    <div class="event-item-meta">${metaText}</div>
+                </div>
+                <i class="fas fa-chevron-right" style="color: #cbd5e1;"></i>
+            `;
+            return div;
+        }
+
+        document.getElementById('logoutBtnPage').addEventListener('click', () => {
+            if (confirm("Are you sure you want to sign out?")) {
+                signOut(auth).then(() => {
+                    window.location.href = 'index.html';
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

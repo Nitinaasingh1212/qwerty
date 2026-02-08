@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - CornerClub</title>
+    <meta name="description"
+        content="Get in touch with the CornerClub team. We are here to help with event queries, support, and partnerships. Contact us via email, phone, or live chat.">
+    <meta name="keywords" content="contact CornerClub, support, help, event support, customer service, Lucknow office">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact Us - CornerClub">
+    <meta property="og:description" content="Get in touch with the CornerClub team for support and inquiries.">
+    <meta property="og:url" content="https://cornerclub.in/contact.html">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("Ui-cGNR7fSTMC88jZ"); // Public Key from event-details.html
+        })();
+    </script>
+    <style>
+        /* Contact Page Specific Styles */
+        .contact-hero {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .contact-hero h1 {
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-transform: lowercase;
+        }
+
+        .contact-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 80px;
+        }
+
+        .contact-info {
+            padding-right: 30px;
+        }
+
+        .contact-info h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6d28d9;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .method-content h3 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .method-content p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .method-content a {
+            color: #6d28d9;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .method-content a:hover {
+            color: #8b5cf6;
+        }
+
+        .contact-form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #6d28d9;
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.1);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(109, 40, 217, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .faq-question h4 {
+            font-size: 18px;
+            color: #333;
+            font-weight: 500;
+            margin: 0;
+            flex: 1;
+        }
+
+        .faq-icon {
+            color: #6d28d9;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+        }
+
+        .faq-answer.open {
+            padding: 0 25px 25px;
+            max-height: 500px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* Office Location */
+        .office-section {
+            background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 80px;
+        }
+
+        .office-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .office-info h3 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .office-info p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .office-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .office-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .office-detail i {
+            color: #6d28d9;
+            font-size: 20px;
+            width: 24px;
+        }
+
+        .office-detail span {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .office-map {
+            height: 300px;
+            background: #e5e7eb;
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+        }
+
+        /* Social Connect */
+        .social-section {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .social-section h3 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .social-section p {
+            font-size: 18px;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #405DE6, #5B51D8, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+
+        .twitter {
+            background: #1DA1F2;
+        }
+
+        .facebook {
+            background: #1877F2;
+        }
+
+        .linkedin {
+            background: #0A66C2;
+        }
+
+        .youtube {
+            background: #FF0000;
+        }
+
+        .discord {
+            background: #5865F2;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10B981;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .contact-info {
+                padding-right: 0;
+            }
+
+            .office-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 36px;
+            }
+
+            .contact-hero p {
+                font-size: 18px;
+            }
+
+            .contact-info h2,
+            .section-header h2,
+            .office-info h3,
+            .social-section h3 {
+                font-size: 28px;
+            }
+
+            .office-section,
+            .contact-form-container {
+                padding: 30px;
+            }
+
+            .social-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">cornerclub.in</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <a href="create-event.html" class="create-event-btn">
+            <i class="fas fa-plus"></i> Create Event
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <h1>Get in Touch</h1>
+        <p>We're here to help! Whether you have questions about events, need support, or want to partner with us, our
+            team is ready to assist you.</p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="contact-container">
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Let's Connect</h2>
+                <p>We value every conversation and are committed to providing you with the best support. Choose your
+                    preferred way to reach out to us.</p>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="method-content">
+                            <h3>Email Us</h3>
+                            <p>General Inquiries</p>
+                            <a href="mailto:cornerclubinn@gmail.com">cornerclubinn@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="method-content">
+                            <h3>Call Us</h3>
+                            <p>Customer Support</p>
+                            <a href="tel:+91 88849 28295">+91 88849 28295</a>
+                            <p>Business Hours</p>
+                            <p>Mon-Fri: 9 AM - 6 PM IST</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="method-content">
+                            <h3>Live Chat</h3>
+                            <p>Instant Support</p>
+                            <a href="#" id="liveChatBtn">Start Live Chat</a>
+                            <p>Available 24/7 for urgent inquiries</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <h3>Send us a Message</h3>
+
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Inquiry Type *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="support">Technical Support</option>
+                            <option value="event">Event Related</option>
+                            <option value="partnership">Business Partnership</option>
+                            <option value="feedback">Feedback/Suggestions</option>
+                            <option value="press">Press/Media</option>
+                            <option value="careers">Careers</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" required
+                            placeholder="Brief subject of your message">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message *</label>
+                        <textarea id="message" name="message" required
+                            placeholder="Tell us how we can help you..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required> I agree to the <a href="terms.html"
+                                style="color: #6d28d9;">Terms &
+                                Conditions</a> and <a href="privacy.html" style="color: #6d28d9;">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Quick answers to common questions about CornerClub</p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How do I create an event on CornerClub?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Creating an event is simple! Click the "Create Event" button in the navigation, fill in your
+                            event details, upload images, set your pricing, and publish. You can manage all aspects of
+                            your event from your dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What are the chat rooms feature?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our exclusive chat rooms allow attendees to connect before the event starts. When someone
+                            books a ticket, they automatically get access to a private chat room with other attendees.
+                            This helps build community and excitement before the event.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How do ticket sales and payments work?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We handle all ticket sales securely. Payments are processed through our secure payment
+                            gateway, and funds are transferred to your account within 3-5 business days after the event.
+                            We charge a small platform fee for paid events.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Can I promote my event on CornerClub?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We offer various promotion options including featuring events on our homepage, email
+                            newsletters to relevant subscribers, and social media promotion. You can also use our
+                            built-in marketing tools to create shareable event pages.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>What safety measures are in place?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We verify all event organizers, moderate chat rooms for safety, provide secure payment
+                            processing, and offer customer support for any issues. Attendees can also rate and review
+                            events to help maintain quality standards.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>How do I contact customer support?</h4>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reach our support team via email at cornerclubinn@gmail.com, through our live chat
+                            feature, or by calling +91 88849 28295. We aim to respond to all inquiries within 24 hours.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Office Location -->
+        <section class="office-section">
+            <div class="office-content">
+                <div class="office-info">
+                    <h3>Visit Our Office</h3>
+                    <p>Feel free to visit our headquarters in Lucknow. We'd love to meet you in person and discuss how
+                        we
+                        can help build your community.</p>
+
+                    <div class="office-details">
+                        <div class="office-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span> Vishwas Khand, Gomti Nagar, Lucknow</span>
+                        </div>
+                        <div class="office-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Monday to Friday: 9:00 AM - 6:00 PM IST</span>
+                        </div>
+                        <div class="office-detail">
+                            <i class="fas fa-car"></i>
+                            <span>Parking available in the building</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="office-map">
+                    <!-- In a real implementation, this would be a Google Maps embed -->
+                    <i class="fas fa-map-marked-alt" style="font-size: 48px; margin-bottom: 15px;"></i>
+                    <p>Interactive Map View</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Connect -->
+        <section class="social-section">
+            <h3>Stay Connected</h3>
+            <p>Follow us on social media for event updates, community stories, and exclusive content.</p>
+
+            <div class="social-icons">
+                <a href="#" class="social-icon instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-icon facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon linkedin">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-icon youtube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+        <span>Your message has been sent successfully! We'll get back to you soon.</span>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CornerClub</h3>
+                <p>Building communities through shared experiences.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="create-event.html">Create Event</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Music Events</a></li>
+                    <li><a href="#">Food Festivals</a></li>
+                    <li><a href="#">Tech Conferences</a></li>
+                    <li><a href="#">Art Exhibitions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 cornerclub.in. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="animations.js"></script>
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer && item.classList.contains('open')) {
+                    item.classList.remove('open');
+                    item.previousElementSibling.querySelector('.faq-icon').textContent = '+';
+                }
+            });
+
+            // Toggle current FAQ
+            answer.classList.toggle('open');
+            icon.textContent = answer.classList.contains('open') ? '−' : '+';
+        }
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            // Get form values
+            const templateParams = {
+                from_name: document.getElementById('name').value,
+                from_email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                category: document.getElementById('category').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            emailjs.send('service_j79tv6e', 'template_contact', templateParams)
+                .then(function (response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    // Show success message
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.style.display = 'block';
+
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }, function (error) {
+                    console.log('FAILED...', error);
+                    alert('Failed to send message. Please try again later or contact us directly at cornerclubinn@gmail.com');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+        });
+
+        // Live Chat Simulation
+        document.getElementById('liveChatBtn').addEventListener('click', function (e) {
+            e.preventDefault();
+            const successMessage = document.getElementById('successMessage');
+            successMessage.innerHTML = '<i class="fas fa-comments" style="margin-right: 10px;"></i><span>Live chat started! A support agent will join shortly.</span>';
+            successMessage.style.display = 'block';
+
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        });
+
+        // Add some interactivity to form fields
+        document.querySelectorAll('.form-group input, .form-group textarea, .form-group select').forEach(field => {
+            field.addEventListener('focus', function () {
+                this.parentElement.classList.add('focused');
+            });
+
+            field.addEventListener('blur', function () {
+                this.parentElement.classList.remove('focused');
+            });
+        });
+
+        // Social media click handlers
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function (e) {
+                e.preventDefault();
+                const platform = this.className.split(' ')[1];
+                const successMessage = document.getElementById('successMessage');
+                successMessage.innerHTML = `<i class="fab fa-${platform}" style="margin-right: 10px;"></i><span>Opening ${platform} in a new tab...</span>`;
+                successMessage.style.display = 'block';
+
+                // In real implementation, this would actually open the social media page
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+
+</html>
